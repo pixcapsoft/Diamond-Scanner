@@ -24,7 +24,7 @@
 This mod file is available on Modrinth and official [Github](https://github.com/pixcapsoft/Diamond-Scanner). Download jar file for your Minecraft version and put it on 'mods' folder and restart the Minecraft.
 
 
-This mod is licensed under the [LICENSE] (License)
+This mod is licensed under the [LICENSE](License)
 Source is also available at [Github](https://github.com/pixcapsoft/Diamond-Scanner)
 
 Copyright (C) 2025 PixCap Soft All Right Reserved!
