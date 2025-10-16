@@ -1,0 +1,6 @@
+.devcontainer
+build
+.git
+.gradle
+.idea
+run
