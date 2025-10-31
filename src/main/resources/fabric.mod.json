@@ -1,0 +1,40 @@
+{
+    "schemaVersion": 1,
+    "id": "pixcapdiamondscanner",
+    "version": "${version}",
+    "name": "PixCap Diamond Scanner",
+    "description": "This mod allow players to find cordinates of Diamonds easily without cheating using X-Ray mods.",
+    "authors": [
+        "PixCap Soft"
+    ],
+    "contact": {
+        "homepage": "https://github.com/pixcapsoft/Diamond-Scanner",
+        "sources": "https://github.com/pixcapsoft/Diamond-Scanner"
+    },
+    "license": "PixCap",
+    "icon": "assets/pixcapdiamondscanner/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "lk.pixcapsoft.diamondscanner.Pixcapdiamondscanner"
+        ],
+        "client": [
+            "lk.pixcapsoft.diamondscanner.PixcapdiamondscannerClient"
+        ],
+        "fabric-datagen": [
+            "lk.pixcapsoft.diamondscanner.PixcapdiamondscannerDataGenerator"
+        ]
+    },
+    "mixins": [
+        "pixcapdiamondscanner.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.17.3",
+        "minecraft": "~1.21.10",
+        "java": ">=21",
+        "fabric-api": "*"
+    },
+    "suggests": {
+        "another-mod": "*"
+    }
+}

@@ -1,0 +1,10 @@
+{
+<<<<<<< HEAD
+  "key.pixcapdiamondscanner.scan": "Scan for Diamonds",
+  "key.category.pixcapdiamondscanner.category": "Pixcap Diamond Scanner"
+=======
+  "key.pixcapdiamondscanner.scan": "Scan for Ores",
+  "key.pixcapdiamondscanner.openresults": "Open Last Scan Results",
+  "key.category.pixcapdiamondscanner.category": "PixCap Diamond Scanner"
+>>>>>>> f1eaac0 (V 0.0.3 Stable)
+}
