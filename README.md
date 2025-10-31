@@ -1,11 +1,8 @@
 # PixCap Diamond Scanner
 
-<<<<<<< HEAD
 > **Simple lightweight diamond scanner for Fabric.**
 =======
 > **Simple lightweight ore scanner for Fabric with GUI display.**
->>>>>>> f1eaac0 (V 0.0.3 Stable)
-
 ---
 
 ![PDS Banner](https://raw.githubusercontent.com/pixcapsoft/Diamond-Scanner/main/banner.jpg)
@@ -14,7 +11,6 @@
 
 ## 🎉 What is the Diamond Scanner
 
-<<<<<<< HEAD
 **PixCap Diamond Scanner** is lightweight Minecraft mod that runs on Fabric mod loader. This mod allow user to find cordinates of nearby diamond ores(Deepslate diamond ores too). If you ever feeling it's hard to find diamonds in minecraft you should try this mod. Because of this mod not using X-ray method you will not feel like cheating.
 
 ## ✨ Features
@@ -57,18 +53,15 @@
    - In the Nether: Finds all ancient debris within 32 blocks
 2. **View Results**: A scrollable window appears showing all found ores with their coordinates
 3. **Reopen Results**: Press **H** to view your last scan results anytime
->>>>>>> f1eaac0 (V 0.0.3 Stable)
 
 ## How to Download & Install
 
 This mod file is available on Modrinth and official [Github](https://github.com/pixcapsoft/Diamond-Scanner). Download jar file for your Minecraft version and put it on 'mods' folder and restart the Minecraft.
 
 
-<<<<<<< HEAD
 This mod is licensed under the [LICENSE](LICENSE)
 =======
 This mod is licensed under the [PixCap License](LICENSE)
->>>>>>> f1eaac0 (V 0.0.3 Stable)
 Source is also available at [Github](https://github.com/pixcapsoft/Diamond-Scanner)
 
 Copyright (C) 2025 PixCap Soft All Right Reserved!
