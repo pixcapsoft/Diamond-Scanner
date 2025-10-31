@@ -1,7 +1,5 @@
 # PixCap Diamond Scanner
 
-> **Simple lightweight diamond scanner for Fabric.**
-=======
 > **Simple lightweight ore scanner for Fabric with GUI display.**
 ---
 
@@ -11,7 +9,7 @@
 
 ## 🎉 What is the Diamond Scanner
 
-**PixCap Diamond Scanner** is lightweight Minecraft mod that runs on Fabric mod loader. This mod allow user to find cordinates of nearby diamond ores(Deepslate diamond ores too). If you ever feeling it's hard to find diamonds in minecraft you should try this mod. Because of this mod not using X-ray method you will not feel like cheating.
+**PixCap Diamond Scanner** is lightweight Minecraft mod that runs on Fabric mod loader. This mod allow user to find cordinates of nearby diamond ores(Deepslate diamond ores too) and Ancient Debris at Nether. If you ever feeling it's hard to find diamonds in minecraft you should try this mod. Because of this mod not using X-ray method you will not feel like cheating.
 
 ## ✨ Features
 
@@ -49,17 +47,17 @@
 ## 🎮 How to Use
 
 1. **Scan for Ores**: Press **G** while in-game
-   - In the Overworld: Finds all diamonds within 32 blocks
-   - In the Nether: Finds all ancient debris within 32 blocks
+   - In the Overworld: Finds all diamonds within 64 blocks
+   - In the Nether: Finds all ancient debris within 64 blocks
 2. **View Results**: A scrollable window appears showing all found ores with their coordinates
 3. **Reopen Results**: Press **H** to view your last scan results anytime
 
 ## How to Download & Install
 
-This mod file is available on Modrinth and official [Github](https://github.com/pixcapsoft/Diamond-Scanner). Download jar file for your Minecraft version and put it on 'mods' folder and restart the Minecraft.
+This mod file is available on CurseForge, Modrinth and official [Github](https://github.com/pixcapsoft/Diamond-Scanner). Download jar file for your Minecraft version and put it on 'mods' folder and restart the Minecraft.
 
 
-This mod is licensed under the [LICENSE](LICENSE)
+This mod is licensed under the [PixCap License](LICENSE)
 =======
 This mod is licensed under the [PixCap License](LICENSE)
 Source is also available at [Github](https://github.com/pixcapsoft/Diamond-Scanner)
