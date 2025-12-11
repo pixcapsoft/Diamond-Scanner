@@ -1,10 +1,7 @@
 {
-<<<<<<< HEAD
-  "key.pixcapdiamondscanner.scan": "Scan for Diamonds",
-  "key.category.pixcapdiamondscanner.category": "Pixcap Diamond Scanner"
-=======
   "key.pixcapdiamondscanner.scan": "Scan for Ores",
   "key.pixcapdiamondscanner.openresults": "Open Last Scan Results",
-  "key.category.pixcapdiamondscanner.category": "PixCap Diamond Scanner"
->>>>>>> f1eaac0 (V 0.0.3 Stable)
+  "key.category.pixcapdiamondscanner.category": "PixCap Diamond Scanner",
+  "advancements.pixcapdiamondscanner.first_scan.title": "Sccanned valuable ores",
+  "advancements.pixcapdiamondscanner.first_scan.description": "Use the Diamond Scanner for the first time"
 }

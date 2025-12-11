@@ -1,159 +1,121 @@
 package lk.pixcapsoft.diamondscanner;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.Identifier;
-<<<<<<< HEAD
+import net.minecraft.client.KeyMapping;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import  net.minecraft.world.level.block.Blocks;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.level.Level;
 import org.lwjgl.glfw.GLFW;
 
-public class KeyBindingHandler {
-    public static KeyBinding scanKey;
-=======
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.world.World;
-import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.minecraft.world.level.block.entity.BeaconBlockEntity.playSound;
+
 public class KeyBindingHandler {
-    public static KeyBinding scanKey;
-    public static KeyBinding openResultsKey;
-    
+    public static KeyMapping scanKey;
+    public static KeyMapping openResultsKey;
+
     // Store last scan results
     private static List<BlockPos> lastScanResults = new ArrayList<>();
     private static String lastScanType = "No scan performed yet";
-    
+
     // Create the category once and reuse it
-    private static final KeyBinding.Category CATEGORY = KeyBinding.Category.create(
-        Identifier.of("pixcapdiamondscanner", "category")
-    );
->>>>>>> f1eaac0 (V 0.0.3 Stable)
+    private static KeyMapping keyBinding;
+    private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.tryBuild("pixcapdiamondscanner", "category"));
+    //private static final KeyBindingRegistryImpl CATEGORY = KeyBindingRegistryImpl.registerKeyBinding().setKey(
+        //Identifier.tryBuild("pixcapdiamondscanner", "category")
+    //);
 
     public static void register() {
-        scanKey = new KeyBinding(
+        scanKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
                 "key.pixcapdiamondscanner.scan",
-                InputUtil.Type.KEYSYM,
+                InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_G,
-<<<<<<< HEAD
-                KeyBinding.Category.create(Identifier.of("pixcapdiamondscanner", "category"))
-        );
-
-        KeyBindingHelper.registerKeyBinding(scanKey);
-
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (scanKey.wasPressed()) {
-                scanForDiamonds(client);
-=======
                 CATEGORY
-        );
-        
-        openResultsKey = new KeyBinding(
+        ));
+//        scanKey = new KeyBindingHelper(
+//                "key.pixcapdiamondscanner.scan",
+//                Input.Type.KEYSYM,
+//                GLFW.GLFW_KEY_G,
+//                CATEGORY
+//        );
+
+        openResultsKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
                 "key.pixcapdiamondscanner.openresults",
-                InputUtil.Type.KEYSYM,
+                InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_H,
                 CATEGORY
-        );
+        ));
 
-        KeyBindingHelper.registerKeyBinding(scanKey);
-        KeyBindingHelper.registerKeyBinding(openResultsKey);
+//        KeyBindingHelper.registerKeyBinding(scanKey);
+//        KeyBindingHelper.registerKeyBinding(openResultsKey);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (scanKey.wasPressed()) {
+            while (scanKey.consumeClick()) {
                 scanForOres(client);
             }
-            
-            while (openResultsKey.wasPressed()) {
+
+            while (openResultsKey.consumeClick()) {
                 openLastResults(client);
->>>>>>> f1eaac0 (V 0.0.3 Stable)
             }
         });
     }
 
-<<<<<<< HEAD
-    private static void scanForDiamonds(MinecraftClient client) {
-    if (client.player == null || client.world == null) return;
-    
-    // Only allow in singleplayer
-    if (!client.isInSingleplayer()) {
-        client.player.sendMessage(Text.literal("§cDiamond Scanner only works in singleplayer worlds."), false);
-        return;
-    }
-    
-    client.player.sendMessage(Text.literal("Starting scanning engine..."), false);
+    private static void scanForOres(Minecraft client) {
+        if (client.player == null || client.level == null) return;
 
-    BlockPos playerPos = client.player.getBlockPos();
-    int radius = 32;
-    int found = 0;
+        //Advancment
 
-    for (int x = -radius; x <= radius; x++) {
-        for (int y = -radius; y <= radius; y++) {
-            for (int z = -radius; z <= radius; z++) {
-                BlockPos scanPos = playerPos.add(x, y, z);
-                if (client.world.getBlockState(scanPos).isOf(Blocks.DIAMOND_ORE) ||
-                        client.world.getBlockState(scanPos).isOf(Blocks.DEEPSLATE_DIAMOND_ORE)) {
-                    client.player.sendMessage(Text.literal("💎 Found diamond at: " + scanPos.toShortString()), false);
-                    found++;
-                }
-            }
-        }
-    }
-
-    if (found == 0) {
-        client.player.sendMessage(Text.literal("No diamonds found nearby."), false);
-    } else {
-        client.player.sendMessage(Text.literal("Scan complete. Found " + found + " diamond ores."), false);
-        client.player.sendMessage((Text.literal("Open chat if you only seeing few...")), false);
-    }
-}
-=======
-    private static void scanForOres(MinecraftClient client) {
-        if (client.player == null || client.world == null) return;
-        
         // Only allow in singleplayer
-        if (!client.isInSingleplayer()) {
-            client.player.sendMessage(Text.literal("§cScanner only works in singleplayer worlds."), false);
+        if (!client.isSingleplayer()) {
+            client.player.displayClientMessage(Component.literal("§cScanner only works in singleplayer worlds."), false);
             return;
         }
-        
-        BlockPos playerPos = client.player.getBlockPos();
+
+        BlockPos playerPos = client.player.getBlockPosBelowThatAffectsMyMovement();
         int radius = 64;
-        List<BlockPos> foundPositions = new ArrayList<>();
-        
+        List<BlockPos> foundPositions = new ArrayList<BlockPos>();
+
         // Check if player is in the Nether
-        boolean isInNether = client.world.getRegistryKey() == World.NETHER;
-        
+        boolean isInNether = client.level.dimension() == Level.NETHER;
+
+        //if (isInNether) {
         if (isInNether) {
-            client.player.sendMessage(Text.literal("§6Starting Ancient Debris scan..."), false);
+            client.player.displayClientMessage(Component.literal("§6Starting Ancient Debris scan..."), false);
+            client.player.playSound(SoundEvents.BEACON_ACTIVATE, 1.0F, 1.0F);
             lastScanType = "Ancient Debris";
-            
+
             // Scan for Ancient Debris in the Nether
             for (int x = -radius; x <= radius; x++) {
                 for (int y = -radius; y <= radius; y++) {
                     for (int z = -radius; z <= radius; z++) {
-                        BlockPos scanPos = playerPos.add(x, y, z);
-                        if (client.world.getBlockState(scanPos).isOf(Blocks.ANCIENT_DEBRIS)) {
+                        BlockPos scanPos = playerPos.offset(x, y, z);
+                        if (client.level.getBlockState(scanPos).is(Blocks.ANCIENT_DEBRIS)) {
                             foundPositions.add(scanPos);
                         }
                     }
                 }
             }
         } else {
-            client.player.sendMessage(Text.literal("§bStarting Diamond scan..."), false);
+            client.player.displayClientMessage(Component.literal("§bStarting Diamond scan..."), false);
+            client.player.playSound(SoundEvents.BEACON_ACTIVATE, 1.0F, 1.0F);
             lastScanType = "Diamonds";
-            
+
             // Scan for Diamonds in Overworld/End
             for (int x = -radius; x <= radius; x++) {
                 for (int y = -radius; y <= radius; y++) {
                     for (int z = -radius; z <= radius; z++) {
-                        BlockPos scanPos = playerPos.add(x, y, z);
-                        if (client.world.getBlockState(scanPos).isOf(Blocks.DIAMOND_ORE) ||
-                                client.world.getBlockState(scanPos).isOf(Blocks.DEEPSLATE_DIAMOND_ORE)) {
+                        BlockPos scanPos = playerPos.offset(x, y, z);
+                        if (client.level.getBlockState(scanPos).is(Blocks.DIAMOND_ORE) ||
+                                client.level.getBlockState(scanPos).is(Blocks.DEEPSLATE_DIAMOND_ORE)) {
                             foundPositions.add(scanPos);
                         }
                     }
@@ -166,26 +128,29 @@ public class KeyBindingHandler {
 
         // Show results in GUI
         if (foundPositions.isEmpty()) {
-            client.player.sendMessage(Text.literal("§eNo " + lastScanType.toLowerCase() + " found nearby."), false);
+            client.player.displayClientMessage(Component.literal("§eNo " + lastScanType.toLowerCase() + " found nearby."), false);
         } else {
-            client.player.sendMessage(Text.literal("§aScan complete! Found " + foundPositions.size() + " ore(s). Opening results..."), false);
+            client.player.displayClientMessage(Component.literal("§aScan complete! Found " + foundPositions.size() + " ore(s). Opening results..."), false);
+            client.player.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 1.0F, 1.0F);
             client.execute(() -> {
                 client.setScreen(new DiamondResultsScreen(null, foundPositions, lastScanType));
             });
         }
     }
-    
-    private static void openLastResults(MinecraftClient client) {
+
+
+    private static void openLastResults(Minecraft client) {
         if (client.player == null) return;
-        
+
+        client.player.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 1.0F, 1.0F);
+
         if (lastScanResults.isEmpty()) {
-            client.player.sendMessage(Text.literal("§eNo previous scan results available. Press G(Default) to scan."), false);
+            client.player.displayClientMessage(Component.literal("§eNo previous scan results available. Press G(Default) to scan."), false);
             return;
         }
-        
+
         client.execute(() -> {
             client.setScreen(new DiamondResultsScreen(null, lastScanResults, lastScanType));
         });
     }
->>>>>>> f1eaac0 (V 0.0.3 Stable)
 }

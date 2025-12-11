@@ -11,7 +11,7 @@
 
 **PixCap Diamond Scanner** is a lightweight Minecraft mod that runs on Fabric mod loader. This mod allows you to find coordinates of nearby valuable ores in a convenient scrollable GUI window. If you ever feel it's hard to find diamonds or ancient debris in Minecraft, you should try this mod. Because this mod doesn't use X-ray methods, you won't feel like cheating.
 
-## ✨ Features (v0.0.3)
+## ✨ Features (v0.0.3 and up)
 
 - **Smart Dimension Detection**: Automatically detects which dimension you're in
   - In the **Overworld**: Scans for Diamond Ore and Deepslate Diamond Ore
@@ -25,15 +25,14 @@
 - **Singleplayer Only**: Designed for fair singleplayer gameplay
 - **Lightweight**: Minimal performance impact
 - **Shader Compatible**: Works seamlessly with most shader packs
-- **Latest Minecraft Support**: Compatible with Minecraft 1.21.10+
+- **Latest Minecraft Support**: Compatible with Minecraft 1.21.10 and up
 
-## 📋 What's New in v0.0.3
+## 📋 What's New in v0.0.4
 
-- ✨ **New GUI Display**: Ore locations now shown in a scrollable results window instead of chat messages
-- 🔥 **Ancient Debris Scanning**: Added support for scanning Ancient Debris in the Nether dimension
-- 🗺️ **Dimension Detection**: Automatically switches between diamond and ancient debris scanning based on your current dimension
-- 📊 **Results History**: New keybind (H) to reopen your last scan results
-- 🎨 **Improved User Experience**: Better visual feedback and organized coordinate display
+- ✨ **Support Latest MC 1.21.11** : Now PDS is support latest Minecraft release 1.21.11 Fabric.
+- ✔ **Updated to Latest Fabric** : We have updated Yarn Mappings to 1.21.11+Build.2, Fabric version 0.139.4+1.21.11, Loader version 0.18.2 and Loom version 1.14-Snapshot
+- 🎶 **Response with Sounds** : Scanner will response after scaning and opening the result screen. (Scanning -> Beacon Activating Sound / Open Result Screen -> UI Button Click Sound)
+- 🌹 **Icon Changed** : Mod Logo changed to new logo.
 
 ## 🎮 How to Use
 
