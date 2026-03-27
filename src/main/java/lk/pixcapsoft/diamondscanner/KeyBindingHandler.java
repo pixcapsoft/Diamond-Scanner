@@ -2,13 +2,12 @@ package lk.pixcapsoft.diamondscanner;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import  net.minecraft.world.level.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.Level;
@@ -16,8 +15,6 @@ import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static net.minecraft.world.level.block.entity.BeaconBlockEntity.playSound;
 
 public class KeyBindingHandler {
     public static KeyMapping scanKey;
@@ -35,7 +32,7 @@ public class KeyBindingHandler {
     //);
 
     public static void register() {
-        scanKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+        scanKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.pixcapdiamondscanner.scan",
                 InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_G,
@@ -48,7 +45,7 @@ public class KeyBindingHandler {
 //                CATEGORY
 //        );
 
-        openResultsKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+        openResultsKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.pixcapdiamondscanner.openresults",
                 InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_H,
@@ -76,7 +73,7 @@ public class KeyBindingHandler {
 
         // Only allow in singleplayer
         if (!client.isSingleplayer()) {
-            client.player.displayClientMessage(Component.literal("§cScanner only works in singleplayer worlds."), false);
+            client.player.sendSystemMessage(Component.literal("§cScanner only works in singleplayer worlds."));
             return;
         }
 
@@ -89,7 +86,7 @@ public class KeyBindingHandler {
 
         //if (isInNether) {
         if (isInNether) {
-            client.player.displayClientMessage(Component.literal("§6Starting Ancient Debris scan..."), false);
+            client.player.sendSystemMessage(Component.literal("§6Starting Ancient Debris scan..."));
             client.player.playSound(SoundEvents.BEACON_ACTIVATE, 1.0F, 1.0F);
             lastScanType = "Ancient Debris";
 
@@ -105,7 +102,7 @@ public class KeyBindingHandler {
                 }
             }
         } else {
-            client.player.displayClientMessage(Component.literal("§bStarting Diamond scan..."), false);
+            client.player.sendSystemMessage(Component.literal("§bStarting Diamond scan..."));
             client.player.playSound(SoundEvents.BEACON_ACTIVATE, 1.0F, 1.0F);
             lastScanType = "Diamonds";
 
@@ -128,9 +125,9 @@ public class KeyBindingHandler {
 
         // Show results in GUI
         if (foundPositions.isEmpty()) {
-            client.player.displayClientMessage(Component.literal("§eNo " + lastScanType.toLowerCase() + " found nearby."), false);
+            client.player.sendSystemMessage(Component.literal("§eNo " + lastScanType.toLowerCase() + " found nearby."));
         } else {
-            client.player.displayClientMessage(Component.literal("§aScan complete! Found " + foundPositions.size() + " ore(s). Opening results..."), false);
+            client.player.sendSystemMessage(Component.literal("§aScan complete! Found " + foundPositions.size() + " ore(s). Opening results..."));
             client.player.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 1.0F, 1.0F);
             client.execute(() -> {
                 client.setScreen(new DiamondResultsScreen(null, foundPositions, lastScanType));
@@ -145,7 +142,7 @@ public class KeyBindingHandler {
         client.player.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 1.0F, 1.0F);
 
         if (lastScanResults.isEmpty()) {
-            client.player.displayClientMessage(Component.literal("§eNo previous scan results available. Press G(Default) to scan."), false);
+            client.player.sendSystemMessage(Component.literal("§eNo previous scan results available. Press G(Default) to scan."));
             return;
         }
 

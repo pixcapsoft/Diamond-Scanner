@@ -1,8 +1,8 @@
 package lk.pixcapsoft.diamondscanner;
 
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -33,22 +33,22 @@ public class DiamondResultsScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(GuiGraphicsExtractor context, int mouseX, int mouseY, float delta) {
         // Dark background
         context.fill(0, 0, this.width, this.height, 0xE0101010);
 
         // Title
         MutableComponent titleText = Component.literal(oreType + " Scan Results");
-        context.drawCenteredString(this.font, titleText, this.width / 2, 15, 0xFFFFFF);
+        context.centeredText(this.font, titleText, this.width / 2, 15, 0xFFFFFF);
 
         // Result count with color
         int countColor = oreType.equals("Ancient Debris") ? 0xFFFF6B3E : 0xFF55FFFF;
         MutableComponent countText = Component.literal("Found " + orePositions.size() + " " + oreType.toLowerCase() + " ore(s)");
-        context.drawCenteredString(this.font, countText, this.width / 2, 30, countColor);
+        context.centeredText(this.font, countText, this.width / 2, 30, countColor);
 
         // Keybind reminder
         MutableComponent reminderText = Component.literal("Press H to reopen these results anytime");
-        context.drawCenteredString(this.font, reminderText, this.width / 2, 45, 0xFF888888);
+        context.centeredText(this.font, reminderText, this.width / 2, 45, 0xFF888888);
 
         // Box background
         int boxX = this.width / 2 - 150;
@@ -76,26 +76,26 @@ public class DiamondResultsScreen extends Screen {
             int textY = boxY + 5 + (i - startIndex) * LINE_HEIGHT;
 
             // Left-aligned text
-            context.drawString(this.font, posText, boxX + 10, textY, 0xFFFFFFFF);
+            context.text(this.font, posText, boxX + 10, textY, 0xFFFFFFFF);
         }
 
         // Scroll indicators
         if (scrollOffset > 0) {
             MutableComponent scrollUpText = Component.literal("^ Scroll Up");
-            context.drawCenteredString(this.font, scrollUpText, this.width / 2, boxY - 15, 0xFFFFFF55);
+            context.centeredText(this.font, scrollUpText, this.width / 2, boxY - 15, 0xFFFFFF55);
         }
         if (endIndex < orePositions.size()) {
             MutableComponent scrollDownText = Component.literal("v Scroll Down");
-            context.drawCenteredString(this.font, scrollDownText, this.width / 2, boxY + boxHeight + 5, 0xFFFFFF55);
+            context.centeredText(this.font, scrollDownText, this.width / 2, boxY + boxHeight + 5, 0xFFFFFF55);
         }
 
         // Instructions
         if (orePositions.size() > VISIBLE_LINES) {
             MutableComponent instructionText = Component.literal("Use mouse wheel to scroll");
-            context.drawCenteredString(this.font, instructionText, this.width / 2, this.height - 50, 0xFF888888);
+            context.centeredText(this.font, instructionText, this.width / 2, this.height - 50, 0xFF888888);
         }
 
-        super.render(context, mouseX, mouseY, delta);
+        super.extractRenderState(context, mouseX, mouseY, delta);
     }
 
     @Override
