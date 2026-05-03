@@ -50,4 +50,4 @@ This mod file is available on CurseForge, Modrinth and official [Github](https:/
 This mod is licensed under the [PixCap License](https://github.com/pixcapsoft/Diamond-Scanner/blob/main/LICENSE)
 Source is also available at [Github](https://github.com/pixcapsoft/Diamond-Scanner)
 
-Copyright (C) 2026s PixCap Soft All Right Reserved!
+Copyright (C) 2026 PixCap Soft All Right Reserved!
